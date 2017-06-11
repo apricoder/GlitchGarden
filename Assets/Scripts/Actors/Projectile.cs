@@ -13,7 +13,7 @@ namespace Actors {
     private GameObject _body;
 
     private void Start() {
-      _body = GameObject.Find("Body");
+      _body  = transform.Find("Body").gameObject;
     }
 
     private void Update() {
@@ -22,7 +22,7 @@ namespace Actors {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-      Debug.Log(gameObject.name + " touched " + other.gameObject.name);
+      // Debug.Log(gameObject.name + " touched " + other.gameObject.name);
     }
 
   }

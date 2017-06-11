@@ -2,23 +2,23 @@
 
 namespace Actors {
 
+  [RequireComponent(typeof(Rigidbody2D))]
   public class Attacker : MonoBehaviour {
 
     [Range(-2.0f, 5.0f)]
     public float Speed;
 
     private float _currentSpeed;
+    private GameObject _currentTarget;
+    private Animator _animator;
 
     private void Start() {
       _currentSpeed = Speed;
+      _animator = GetComponent<Animator>();
     }
 
     private void Update() {
       transform.Translate(Vector3.left * _currentSpeed * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-      Debug.Log(gameObject.name + " touched " + other.gameObject.name);
     }
 
     public void SetSpeed(float speed) {
@@ -30,8 +30,14 @@ namespace Actors {
     }
 
     public void StrikeCurrentTarget(float damage) {
-      Debug.Log(name + " hit target with damage " + damage);
-    } 
+      // Debug.Log(name + " hit target with damage " + damage);
+    }
+
+    public void Attack(GameObject target) {
+      _currentTarget = target;
+      Debug.Log(gameObject.name + " attacking " + target.name);
+      _animator.SetBool("attacking", true);
+    }
 
   }
 }
