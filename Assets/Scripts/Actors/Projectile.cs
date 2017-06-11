@@ -22,7 +22,7 @@ namespace Actors {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-      // Debug.Log(gameObject.name + " touched " + other.gameObject.name);
+       Debug.Log(gameObject.name + " touched " + other.gameObject.name);
     }
 
   }

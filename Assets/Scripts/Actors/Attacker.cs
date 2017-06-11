@@ -8,6 +8,12 @@ namespace Actors {
     [Range(-2.0f, 5.0f)]
     public float Speed;
 
+    [Range(0.0f, 50.0f)]
+    public float Damage;
+    
+    [Range(0.0f, 100.0f)]
+    public float Health;
+
     private float _currentSpeed;
     private GameObject _currentTarget;
     private Animator _animator;
@@ -29,13 +35,19 @@ namespace Actors {
       _currentSpeed = Speed;
     }
 
-    public void StrikeCurrentTarget(float damage) {
-      // Debug.Log(name + " hit target with damage " + damage);
+    public void StrikeCurrentTarget() {
+      if (!_currentTarget) return;
+      
+      var healthLeft = _currentTarget.GetComponent<Health>().Value -= Damage;
+      if (healthLeft > 0) return;
+        
+      _currentTarget.GetComponent<Defender>().Die();
+      _animator.SetBool("attacking", false);
     }
 
     public void Attack(GameObject target) {
-      _currentTarget = target;
       Debug.Log(gameObject.name + " attacking " + target.name);
+      _currentTarget = target;
       _animator.SetBool("attacking", true);
     }
 
