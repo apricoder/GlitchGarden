@@ -2,12 +2,12 @@
 
 namespace Common {
 
-    public class Name {
+  public class Name {
 
-        public static string OfMethod(Action action) {
-            return action.Method.Name;
-        }
-
+    public static string OfMethod(Action action) {
+      return action.Method.Name;
     }
+
+  }
 
 }
