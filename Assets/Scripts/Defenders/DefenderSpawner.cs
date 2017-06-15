@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Common
+namespace Defenders
 {
     public class DefenderSpawner : MonoBehaviour
     {
         public Camera Camera;
-        
+
         private GameObject _parent;
 
         private void Start()

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Actors
+namespace Defenders
 {
     public class Defender : MonoBehaviour
     {

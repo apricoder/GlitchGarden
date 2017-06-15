@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using Attackers;
+using Common;
+using UnityEngine;
 
-namespace Actors
+namespace Defenders
 {
     public class Projectile : MonoBehaviour
     {

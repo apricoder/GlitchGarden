@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using Common;
+using Defenders;
+using UnityEngine;
 
-namespace Actors
+namespace Attackers
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Attacker : MonoBehaviour
@@ -10,6 +12,8 @@ namespace Actors
         [Range(0.0f, 50.0f)] public float Damage;
 
         [Range(0.0f, 100.0f)] public float Health;
+
+        [Range(0.0f, 15.0f)] public float AppearingEverySeconds;
 
         private float _currentSpeed;
         private GameObject _currentTarget;

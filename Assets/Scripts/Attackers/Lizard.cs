@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Defenders;
+using UnityEngine;
 
-namespace Actors
+namespace Attackers
 {
     [RequireComponent(typeof(Attacker))]
     public class Lizard : MonoBehaviour

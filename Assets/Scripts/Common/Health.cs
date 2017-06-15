@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Actors
+namespace Common
 {
     public class Health : MonoBehaviour
     {
