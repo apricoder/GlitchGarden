@@ -4,23 +4,23 @@ namespace Actors
 {
     public class Shooter : MonoBehaviour
     {
-        private GameObject _projectilesParent;
+        private GameObject _parent;
 
         public GameObject Gun;
         public GameObject Projectile;
 
         private void Start()
         {
-            _projectilesParent = GameObject.Find("Projectiles");
-            if (!_projectilesParent)
+            _parent = GameObject.Find("Projectiles");
+            if (!_parent)
             {
-                _projectilesParent = new GameObject("Projectiles");
+                _parent = new GameObject("Projectiles");
             }
         }
 
         public void Shoot()
         {
-            Instantiate(Projectile, Gun.transform.position, Quaternion.identity, _projectilesParent.transform);
+            Instantiate(Projectile, Gun.transform.position, Quaternion.identity, _parent.transform);
         }
     }
 }
