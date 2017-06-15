@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Actors {
-	
-	public class GraveStone : MonoBehaviour {
-
-	}
+namespace Actors
+{
+    public class GraveStone : MonoBehaviour
+    {
+    }
 }

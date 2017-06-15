@@ -1,31 +1,31 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Scenes.Transitions {
+namespace Scenes.Transitions
+{
+    public class FadeIn : MonoBehaviour
+    {
+        public static readonly float DefaultDuration = 0.4f;
 
-  public class FadeIn : MonoBehaviour {
+        public float Duration = DefaultDuration;
 
-    public static readonly float DefaultDuration = 0.4f;
+        private readonly Color _startColor = Color.black;
+        private float _alphaStep;
+        private Image _image;
 
-    public float Duration = DefaultDuration;
+        public void Start()
+        {
+            _image = GetComponent<Image>();
+            _image.color = _startColor;
+            _alphaStep = _startColor.a / Duration;
+        }
 
-    private readonly Color _startColor = Color.black;
-    private float _alphaStep;
-    private Image _image;
-
-    public void Start() {
-      _image = GetComponent<Image>();
-      _image.color = _startColor;
-      _alphaStep = _startColor.a / Duration;
+        public void Update()
+        {
+            var color = _image.color;
+            color.a -= Time.deltaTime * _alphaStep;
+            if (color.a >= 0) _image.color = color;
+            else Destroy(gameObject);
+        }
     }
-
-    public void Update() {
-      var color = _image.color;
-      color.a -= Time.deltaTime * _alphaStep;
-      if (color.a >= 0) _image.color = color;
-      else Destroy(gameObject);
-    }
-
-  }
-
 }

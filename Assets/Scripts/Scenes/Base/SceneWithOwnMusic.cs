@@ -1,30 +1,33 @@
 using Common;
 
-namespace Scenes.Base {
+namespace Scenes.Base
+{
+    public class SceneWithOwnMusic : Scene
+    {
+        protected MusicManager MusicManager;
 
-  public class SceneWithOwnMusic : Scene {
+        public override void Start()
+        {
+            base.Start();
+            PlayMyBackgroundMusic();
+        }
 
-    protected MusicManager MusicManager;
+        protected override void InitReferences()
+        {
+            base.InitReferences();
+            if (!MusicManager)
+            {
+                MusicManager = FindObjectOfType<MusicManager>();
+            }
+        }
 
-    public override void Start() {
-      base.Start();
-      PlayMyBackgroundMusic();
+        private void PlayMyBackgroundMusic()
+        {
+            var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+            if (MusicManager)
+            {
+                MusicManager.OnLevelChanged(scene.buildIndex);
+            }
+        }
     }
-
-    protected override void InitReferences() {
-      base.InitReferences();
-      if (!MusicManager) {
-        MusicManager = FindObjectOfType<MusicManager>();
-      }
-    }
-
-    private void PlayMyBackgroundMusic() {
-      var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-      if (MusicManager) {
-        MusicManager.OnLevelChanged(scene.buildIndex);
-      }
-    }
-
-  }
-
 }
