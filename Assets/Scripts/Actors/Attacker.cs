@@ -51,5 +51,9 @@ namespace Actors {
       _animator.SetBool("attacking", true);
     }
 
+    public void Die() {
+      Destroy(gameObject);
+    }
+
   }
 }

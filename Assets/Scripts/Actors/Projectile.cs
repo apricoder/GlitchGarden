@@ -10,10 +10,13 @@ namespace Actors {
     [Range(-1500.0f, 1500.0f)]
     public float Rotation;
 
+    [Range(0.0f, 100.0f)]
+    public float Damage;
+
     private GameObject _body;
 
     private void Start() {
-      _body  = transform.Find("Body").gameObject;
+      _body = transform.Find("Body").gameObject;
     }
 
     private void Update() {
@@ -22,7 +25,13 @@ namespace Actors {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-       Debug.Log(gameObject.name + " touched " + other.gameObject.name);
+      Debug.Log(gameObject.name + " touched " + other.gameObject.name);
+      var attacker = other.GetComponent<Attacker>();
+      if (!attacker) return;
+
+      var healthLeft = attacker.GetComponent<Health>().Value -= Damage;
+      if (healthLeft < 0) attacker.Die();
+      Destroy(gameObject);
     }
 
   }
