@@ -8,14 +8,14 @@ namespace Attackers {
 
     public GameObject[] AttackersPrefabs;
 
-    private Dictionary<string, int> _spawnCounts;
-    private float _randomDelay;
+    private Dictionary<string, float> _spawnCounts;
+    private float _startDelay;
+    private float _periodDelay;
 
     private void Start() {
-      _randomDelay = Random.Range(5.0f, 25.0f);
-      _spawnCounts = new Dictionary<string, int>();
+      _spawnCounts = new Dictionary<string, float>();
       foreach (var attackerPref in AttackersPrefabs) {
-        _spawnCounts.Add(attackerPref.name, 0);
+        _spawnCounts.Add(attackerPref.name, Random.Range(5.0f, 25.0f));
       }
     }
 
@@ -23,7 +23,8 @@ namespace Attackers {
     public void Spawn(GameObject attacker) {
       attacker.transform.position = Vector3.zero;
       Instantiate(attacker, transform);
-      _spawnCounts[attacker.name] = Mathf.FloorToInt(Time.timeSinceLevelLoad + _randomDelay);
+      _spawnCounts[attacker.name] = Time.timeSinceLevelLoad;
+      _periodDelay = Random.Range(-0.5f, 3.5f);
     }
 
     private void Update() {
@@ -36,10 +37,10 @@ namespace Attackers {
 
     private bool TimeToSpawn(GameObject attackerGo) {
       var attacker = attackerGo.GetComponent<Attacker>();
-      var time = Time.timeSinceLevelLoad + _randomDelay;
-      var range = attacker.AppearingEverySeconds * 7;
-      range += Random.Range(-0.5f * range, 0.5f * range);
-      return time % range < 0.5f && _spawnCounts[attackerGo.name] <= Mathf.FloorToInt(time / range);
+      var time = Time.timeSinceLevelLoad;
+      var period = attacker.AppearingEverySeconds + _periodDelay;
+      var periodPassed = time - _spawnCounts[attackerGo.name] > period;
+      return periodPassed;
     }
 
   }

@@ -42,6 +42,10 @@ namespace Attackers {
     public void StrikeCurrentTarget() {
       if (!_currentTarget) return;
 
+      if (_currentTarget.GetComponent<GraveStone>()) {
+        _currentTarget.GetComponent<Animator>().SetTrigger("under attack");
+      }
+
       var healthLeft = _currentTarget.GetComponent<Health>().Value -= Damage;
       if (healthLeft > 0) return;
 
