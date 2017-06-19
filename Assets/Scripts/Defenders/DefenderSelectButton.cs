@@ -1,28 +1,25 @@
 ﻿using UnityEngine;
 
-namespace Defenders
-{
-    public class DefenderSelectButton : MonoBehaviour
-    {
-        public static GameObject SelectedDefender;
-        public GameObject DefenderPrefab;
+namespace Defenders {
+  public class DefenderSelectButton : MonoBehaviour {
 
-        private void OnMouseDown()
-        {
-            if (SelectedDefender)
-            {
-                SetSelectedDefenderSpriteColor(Color.black);
-            }
+    public static GameObject SelectedDefender;
+    public GameObject DefenderPrefab;
 
-            SelectedDefender = gameObject;
-            SetSelectedDefenderSpriteColor(Color.white);
-        }
+    private void OnMouseDown() {
+      if (SelectedDefender) {
+        SetSelectedDefenderSpriteColor(Color.black);
+      }
 
-        private static void SetSelectedDefenderSpriteColor(Color color)
-        {
-            SelectedDefender.transform
-                .GetComponentInChildren<SpriteRenderer>()
-                .color = color;
-        }
+      SelectedDefender = gameObject;
+      SetSelectedDefenderSpriteColor(Color.white);
     }
+
+    private static void SetSelectedDefenderSpriteColor(Color color) {
+      SelectedDefender.transform
+        .GetComponentInChildren<SpriteRenderer>()
+        .color = color;
+    }
+
+  }
 }

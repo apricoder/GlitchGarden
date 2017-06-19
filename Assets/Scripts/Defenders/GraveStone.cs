@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-namespace Defenders
-{
-    public class GraveStone : MonoBehaviour
-    {
-    }
+namespace Defenders {
+  public class GraveStone : MonoBehaviour { }
 }
